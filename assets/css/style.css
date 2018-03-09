@@ -1,0 +1,77 @@
+ body {
+    background: url("../images/yellow.jpeg");
+    font-family: 'Merriweather', serif;
+    color: rgb(20, 75, 20);
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }  
+    #container {
+        height: 95%;
+        width: 95%; 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }  
+
+    h1 {
+        text-align: center;
+        font-size: 38px;
+        font-weight: 500;
+        padding: 15px;
+        border-bottom: dotted 3px
+    }
+
+    #dogButtons {
+        max-width: 650px;
+        padding: 5px;
+        float: left;
+    }
+    
+    #yourInput {
+        position: relative;
+        padding: 5px;
+        max-width: 300px;
+        float: right;
+    }
+
+    #askInput {
+        font-size: 18px;
+        line-height: 40px;
+        padding-bottom: 5px;
+        color: rgb(20, 75, 20);
+    }
+
+    #yourChoice {
+        border: rgb(20, 75, 20) 2px solid;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 98%;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 10px;
+        background-color: rgb(255, 255, 222);
+    }
+
+    #submitYourChoice {
+        margin-top: 10px;
+        padding: 6px 18px 6px 18px;
+        background-color: rgb(20, 75, 20);
+        color:  rgb(255, 255, 222); 
+        font-family: 'Merriweather', serif;
+        font-size: 16px;
+        border-radius: 8px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #giphys {
+        clear: both;
+    }
