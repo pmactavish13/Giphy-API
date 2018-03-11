@@ -1,9 +1,8 @@
 $(document).ready(function () {
-
+ 
 var animal = "dog";
-var behavior = ["Tail", "Smile", "Lazy", "Swim", "Play", "Bathe", "Sleep", "Stairs", "Eat", "Lick", "Treats", "Fetch", "Car", "Cat"];
+var behavior = ["Tail", "Window", "Smile", "Lazy", "Swim", "Play", "Bathe", "Sleep", "Stairs", "Eat", "Lick", "Treats", "Fetch"];
 var giphy;
-
 //for (var i=0; i < (animal.length); i++) {
     for (var j=0; j < (behavior.length); j++) {
         var dogButtons = $("<button>" + (behavior[j]) + "</button>");
@@ -25,14 +24,13 @@ $(document).on("click", "button.buttons", function loadGiphyStills() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-//        console.log(response);
+        console.log(response);
   
         for (var i =0; i < (response.data.length); i++) {
             var giphy = $("<embed src=" + (response.data[i].images["fixed_height_still"]["url"]) + 
             " data-animate=" + (response.data[i].embed_url) + "  data-still=" + response.data[i].images["fixed_height_still"]["url"] + " data-state='still' Class='gifs'>");
             giphy.css({
-                "margin-top": "10px", "margin-right": "8px", "margin-bottom": "-4px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "160px", 
-               // "overflow": "hidden"
+                "margin-right": "8px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "160px"
                 });
             // console.log(response.data[0].images["fixed_height_still"]["url"]);
             // console.log(response.data[i].embed_url);
@@ -40,9 +38,8 @@ $(document).on("click", "button.buttons", function loadGiphyStills() {
         };
     });
 });
-
-
-$("#giphys").on("click", "embed.gifs", function animateGiphy(){
+ 
+ $("#giphys").on("click", "embed.gifs", function animateGiphy(){
     var state = $(this).attr("data-state");
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
       // Then, set the image's data-state to animate
@@ -63,8 +60,7 @@ $("#giphys").on("click", "embed.gifs", function animateGiphy(){
         // })
       }
 });
-
-$("#giphys").on("clickUp", "embed.gifs", function activateAnimateGiphy(){
+ $("#giphys").on("clickUp", "embed.gifs", function activateAnimateGiphy(){
     console.log("HI")
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
       // Then, set the image's data-state to animate
@@ -80,6 +76,5 @@ $("#giphys").on("clickUp", "embed.gifs", function activateAnimateGiphy(){
         // "width": "200px", "height": "160px"
         // })
       }
-});
-
-});
+ });
+ });
