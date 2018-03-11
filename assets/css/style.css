@@ -1,12 +1,16 @@
  body {
     background: url("../images/yellow.jpeg");
+    
+    background-size: 100%;
+    
     font-family: 'Merriweather', serif;
     color: rgb(20, 75, 20);
     }
 
     img {
         max-width: 100%;
-        height: auto;
+        max-height: 100%;
+        ;
     }  
     #container {
         height: 95%;
@@ -26,7 +30,8 @@
     }
 
     #dogButtons {
-        max-width: 650px;
+        max-width: 75%;
+        min-width: 50%;
         padding: 5px;
         float: left;
     }
@@ -34,7 +39,8 @@
     #yourInput {
         position: relative;
         padding: 5px;
-        max-width: 300px;
+        max-width: 25%;
+        min-width: 20%;
         float: right;
     }
 
@@ -73,5 +79,7 @@
     }
 
     #giphys {
+        margin-left: auto;
+        margin-right: auto;
         clear: both;
     }
