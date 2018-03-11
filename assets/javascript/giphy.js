@@ -3,6 +3,7 @@ $(document).ready(function () {
 var animal = "dog";
 var behavior = ["Tail", "Window", "Smile", "Lazy", "Swim", "Play", "Bathe", "Sleep", "Stairs", "Eat", "Lick", "Treats", "Fetch"];
 var giphy;
+
 //for (var i=0; i < (animal.length); i++) {
     for (var j=0; j < (behavior.length); j++) {
         var dogButtons = $("<button>" + (behavior[j]) + "</button>");
@@ -30,7 +31,8 @@ $(document).on("click", "button.buttons", function loadGiphyStills() {
             var giphy = $("<embed src=" + (response.data[i].images["fixed_height_still"]["url"]) + 
             " data-animate=" + (response.data[i].embed_url) + "  data-still=" + response.data[i].images["fixed_height_still"]["url"] + " data-state='still' Class='gifs'>");
             giphy.css({
-                "margin-right": "8px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "160px"
+                "margin-top": "10px", "margin-right": "8px", "margin-bottom": "-4px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "160px", 
+                "overflow": "hidden"
                 });
             // console.log(response.data[0].images["fixed_height_still"]["url"]);
             // console.log(response.data[i].embed_url);
