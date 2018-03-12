@@ -29,22 +29,40 @@ var giphy;
     // log response
     .then(function(response) {
         console.log(response);
+        
         // show images on screen
         for (var i =0; i < (response.data.length); i++) {
-            var giphy = $("<embed src=" + (response.data[i].images["fixed_height_still"]["url"]) + 
-            " data-animate=" + (response.data[i].embed_url) + "  data-still=" + response.data[i].images["fixed_height_still"]["url"] + " data-state='still' Class='gifs'>");
-            giphy.css({
-                "margin-top": "10px", "margin-right": "8px", "margin-bottom": "-4px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "160px"
-            });
-            // console.log(response.data[0].images["fixed_height_still"]["url"]);
-            // console.log(response.data[i].embed_url);
-            $("#giphys").append(giphy);
+            $("#giphys").append(ratingGiphy);
+            var idTag = [i]
+            var ratingGiphy = $("<div class='ratingGiphy' id='"+ idTag +"'></div>");
+            rating = (response.data[i].rating);
+            var ratingBanner = $("<p>"+'Rating: ' + (rating) + "</p>"); 
+                // ratingBanner.css({
+                //     "float": "left", "font-size": "12px"
+                // });
+            $("#idTag").append(ratingBanner);
+            var imageStill = response.data[i].images["fixed_height_still"]["url"];
+                console.log(imageStill);
+                // console.log(response.data[0].images["fixed_height_still"]["url"]);
+            var imageAnimate = response.data[i].embed_url;
+                console.log(imageAnimate);
+                // console.log(response.data[i].embed_url);
+            var giphy = $("<embed src=" + imageStill + " data-animate=" + imageAnimate +"  data-still=" + imageStill + " data-state='still' Class='gifs' attr='giphy'>");
+                 giphy.css({
+                "margin-top": "2px", "margin-right": "10px", "margin-bottom": "8px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "200px", "height": "150px", 
+                // "clear": "both"
+                });
+            
+            //$("#giphys").append(ratingGiphy);
+            
+            // 
+            $("#idTag").append(giphy);
         };
     });
 });
 
     // activate image attributes
-    $("#giphys").on("click", "embed.gifs", function animateGiphy(){   
+    $("#giphys").on("click", "embed.gifs", function animateGiphy(event){   
         var state = $(this).attr("data-state");
         // check to see if the image is animated or still
         if (state === "still") {
