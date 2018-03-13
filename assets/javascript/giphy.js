@@ -50,13 +50,14 @@ $(document).ready(function () {
                 // generate giphy image to be added to the screen
                 var giphy = $("<embed src=" + (response.data[i].images["original_still"]["url"]) + " data-animate=" + (response.data[i].images["original"]["url"]) + "  data-still=" + response.data[i].images["original_still"]["url"] + " data-state='still' Class='gifs'>");
                 giphy.css({
-                    "margin-right": "13px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "220px", "height": "160px", "float": "left", 
+                    "margin-right": "13px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "4px", "width": "220px", "height": "160px", "float": "left", 
+                    //"position": "relative" 
                 });
                 // generate giphy rating to be added to screen
                 rating = (response.data[i].rating);
                 var ratingBanner = $("<p>"+'Rated: ' + (response.data[i].rating) + "</p>");
                 ratingBanner.css({
-                    "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-155px",     
+                    "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-241px", "width": "242"
                 }) 
                 // add giphy still image and rating to the screen
                 $("#giphys").prepend(ratingBanner);
