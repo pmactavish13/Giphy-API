@@ -37,7 +37,7 @@ $(document).ready(function () {
          
     // populate div with 10 new still images on button click 
     function loadGiphys() {
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + yourClick[0] + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=" + giphyNum + "&fixed_height=200"; 
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + yourClick[0] + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=" + giphyNum; 
         // get info from url
         $.ajax({
             url: queryURL,
@@ -59,8 +59,8 @@ $(document).ready(function () {
                     "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-155px",     
                 }) 
                 // add giphy still image and rating to the screen
+                $("#giphys").prepend(ratingBanner);
                 $("#giphys").prepend(giphy);
-                $("#giphys").prepend(ratingBanner); 
             };
         });
     };
