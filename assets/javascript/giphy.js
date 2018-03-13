@@ -2,9 +2,10 @@ $(document).ready(function () {
 
     var animal = "dog";
     var behavior = ["Tail", "Smile", "Lazy", "Swim", "Play", "Bathe", "Sleep", "Stairs", "Eat", "Lick", "Treats", "Fetch", "Cat", "Car"];
-    var yourClick;
-
-
+    var yourClick=[];
+    var yourClickCounter = 1
+    var giphyNum = 10
+    
     function postButtons() {
         // Make Buttons
         for (var j=0; j < (behavior.length); j++) {
@@ -17,14 +18,26 @@ $(document).ready(function () {
         };  
     }
 
-    // Activate button attributes and populate div with still images when clicked   
-    $(document).on("click", "button.buttons", function loadGiphyStills() { 
-        // clear giphy and text input divs
-        $("#giphys").empty();
-        $("#yourChoice").empty();
+    // Activate button attributes and same button check
+    $(document).on("click", "button.buttons", function logClick() { 
         // set up info for query
-        behaviorWanted= this.value;
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + behaviorWanted + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=10&fixed_height=200";
+        var behaviorWanted = this.value;
+        if (behaviorWanted === yourClick[0]) {
+            yourClickCounter++
+            giphyNum = (yourClickCounter * 10);
+            loadGiphys()
+        } else {
+            //clear giphy and text input divs
+            $("#giphys").empty();
+            giphyNum = 10;
+            yourClick.unshift(behaviorWanted)
+            loadGiphys();    
+        } 
+    }); 
+         
+    // populate div with 10 new still images on button click 
+    function loadGiphys() {
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + yourClick[0] + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=" + giphyNum + "&fixed_height=200"; 
         // get info from url
         $.ajax({
             url: queryURL,
@@ -33,10 +46,9 @@ $(document).ready(function () {
         // response - promise
         .then(function(response) {
             // show still images
-            for (var i =0; i < (response.data.length); i++) {
+            for (var i = giphyNum - 10; i < (response.data.length); i++) {
                 // generate giphy image to be added to the screen
-                var giphy = $("<embed src=" + (response.data[i].images["original_still"]["url"]) + 
-                " data-animate=" + (response.data[i].images["original"]["url"]) + "  data-still=" + response.data[i].images["original_still"]["url"] + " data-state='still' Class='gifs'>");
+                var giphy = $("<embed src=" + (response.data[i].images["original_still"]["url"]) + " data-animate=" + (response.data[i].images["original"]["url"]) + "  data-still=" + response.data[i].images["original_still"]["url"] + " data-state='still' Class='gifs'>");
                 giphy.css({
                     "margin-right": "13px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "220px", "height": "160px", "float": "left", 
                 });
@@ -47,12 +59,12 @@ $(document).ready(function () {
                     "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-155px",     
                 }) 
                 // add giphy still image and rating to the screen
-                $("#giphys").append(giphy);
-                $("#giphys").append(ratingBanner);    
+                $("#giphys").prepend(giphy);
+                $("#giphys").prepend(ratingBanner); 
             };
         });
-    });
-
+    };
+ 
     // anamate-still images
     $("#giphys").on("click", "embed.gifs", function animateGiphy(){
         var state = $(this).attr("data-state");
@@ -66,7 +78,6 @@ $(document).ready(function () {
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");   
         };
-        console.log(behaviorWanted);
     });
 
     // enable user to add a behavior button
@@ -82,6 +93,6 @@ $(document).ready(function () {
         postButtons();
     });
 
-    // call postButtons function to load the screen
+    // call postButtons function to load the initial buttons
     postButtons();
 });
