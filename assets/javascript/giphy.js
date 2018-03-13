@@ -70,11 +70,14 @@ $(document).ready(function () {
     });
 
     // enable user to add a behavior button
-    $("#otherBehaviors").submit(function(){
+    $("#otherBehaviors").submit(function(event){
+        if ($.trim($("#yourChoice").val()) === "" || $.trim($("#yourChoice").val()) === "Enter Your Choice") {
+            return false
+        }
         event.preventDefault();
         var yourChoice = $("#yourChoice").val();
         behavior.push(yourChoice);
-        
+        $('input[name="behavior"]').val("")
         $("#dogButtons").empty();
         postButtons();
     });
