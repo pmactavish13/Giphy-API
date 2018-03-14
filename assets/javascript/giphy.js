@@ -37,7 +37,7 @@ $(document).ready(function () {
          
     // populate div with 10 new still images on button click 
     function loadGiphys() {
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + yourClick[0] + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=" + giphyNum; 
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=dog+" + yourClick[0] + "&api_key=lN8bGeGk9m7SFABzGBkz44bTJrCWU1KH&limit=" + giphyNum + "&fixed_height=200"; 
         // get info from url
         $.ajax({
             url: queryURL,
@@ -50,18 +50,17 @@ $(document).ready(function () {
                 // generate giphy image to be added to the screen
                 var giphy = $("<embed src=" + (response.data[i].images["original_still"]["url"]) + " data-animate=" + (response.data[i].images["original"]["url"]) + "  data-still=" + response.data[i].images["original_still"]["url"] + " data-state='still' Class='gifs'>");
                 giphy.css({
-                    "margin-right": "13px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "4px", "width": "220px", "height": "160px", "float": "left", 
-                    //"position": "relative" 
+                    "margin-right": "13px", "margin-bottom": "5px", "border-color": "rgb(255, 255, 222)", "border": "solid", "border-width": "3px", "width": "220px", "height": "160px", "float": "left", 
                 });
                 // generate giphy rating to be added to screen
                 rating = (response.data[i].rating);
                 var ratingBanner = $("<p>"+'Rated: ' + (response.data[i].rating) + "</p>");
                 ratingBanner.css({
-                    "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-241px", "width": "242"
+                    "float": "left", "font-size": "13px", "margin-top": "170px", "margin-bottom": "15px", "margin-left": "-244px", "width": "242px"   
                 }) 
                 // add giphy still image and rating to the screen
                 $("#giphys").prepend(ratingBanner);
-                $("#giphys").prepend(giphy);
+                $("#giphys").prepend(giphy); 
             };
         });
     };
